@@ -1,25 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.scss";
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
+import AboutUs from "./Components/AboutUs/AboutUs";
+import MainSection from "./Components/MainSection/MainSection";
+import { Provider } from "./Components/context";
+import Modal from "./Components/Modal/Modal";
+import ModalConfirmed from "./Components/ModalConfirmed/ModalConfirmed";
 
-function App() {
+const App = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalConf, setModalConf] = useState(false);
+  const [cart, setCart] = useState([]);
+  const [numberOfItems, setNumberOfItems] = useState(0);
+
+  const meals = [
+    { name: "Sushi", desc: "Finest fish and veggies", price: 22.99, id: 1 },
+    { name: "Schnitzel", desc: "A german specialty", price: 16.5, id: 2 },
+    {
+      name: "Barbeque Burger",
+      desc: "American, raw, meaty",
+      price: 12.99,
+      id: 3,
+    },
+    { name: "Green Bowl", desc: "Healthy...and green...", price: 18.99, id: 4 },
+    { name: "Pasta Bolognese", desc: "Italian specialty", price: 17.99, id: 5 },
+  ];
+
+  console.log(cart);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <Provider
+        value={{
+          modalOpen,
+          setModalOpen,
+          setModalConf,
+          numberOfItems,
+          setNumberOfItems,
+          cart,
+          setCart,
+        }}
+      >
+        <Header />
+        <AboutUs />
+        <MainSection data={meals} />
+        <Footer />
+        {modalOpen && <Modal />}
+        {modalConf && <ModalConfirmed />}
+      </Provider>
     </div>
   );
-}
+};
 
 export default App;

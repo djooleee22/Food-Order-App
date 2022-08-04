@@ -1,0 +1,22 @@
+#my-cart {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+  background-color: rgb(238, 169, 169);
+  color: rgba(0, 0, 0, 0.781);
+  font-weight: 600;
+  .cart-icon {
+    height: 22px;
+    width: 22px;
+  }
+  .number {
+    padding: 2px 6px;
+    border-radius: 5px;
+    background-color: rgb(223, 59, 59);
+    color: white;
+  }
+}

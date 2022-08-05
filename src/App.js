@@ -8,26 +8,27 @@ import { Provider } from "./Components/context";
 import Modal from "./Components/Modal/Modal";
 import ModalConfirmed from "./Components/ModalConfirmed/ModalConfirmed";
 
+const meals = [
+  { name: "Sushi", desc: "Finest fish and veggies", price: 22.99, id: 1 },
+  { name: "Schnitzel", desc: "A german specialty", price: 16.5, id: 2 },
+  {
+    name: "Barbeque Burger",
+    desc: "American, raw, meaty",
+    price: 12.99,
+    id: 3,
+  },
+  { name: "Green Bowl", desc: "Healthy...and green...", price: 18.99, id: 4 },
+  { name: "Pasta Bolognese", desc: "Italian specialty", price: 17.99, id: 5 },
+];
+
 const App = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalConf, setModalConf] = useState(false);
-  const [cart, setCart] = useState([]);
   const [numberOfItems, setNumberOfItems] = useState(0);
-
-  const meals = [
-    { name: "Sushi", desc: "Finest fish and veggies", price: 22.99, id: 1 },
-    { name: "Schnitzel", desc: "A german specialty", price: 16.5, id: 2 },
-    {
-      name: "Barbeque Burger",
-      desc: "American, raw, meaty",
-      price: 12.99,
-      id: 3,
-    },
-    { name: "Green Bowl", desc: "Healthy...and green...", price: 18.99, id: 4 },
-    { name: "Pasta Bolognese", desc: "Italian specialty", price: 17.99, id: 5 },
-  ];
-
-  console.log(cart);
+  const [cartItems, setCartItems] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [totalMeals, setTotalMeals] = useState(0);
+  console.log(cartItems);
 
   return (
     <div id="app">
@@ -38,8 +39,10 @@ const App = () => {
           setModalConf,
           numberOfItems,
           setNumberOfItems,
-          cart,
-          setCart,
+          total,
+          setCartItems,
+          cartItems,
+          setTotal,
         }}
       >
         <Header />

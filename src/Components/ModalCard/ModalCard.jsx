@@ -1,15 +1,15 @@
 import React from "react";
 import "./ModalCard.scss";
 
-const ModalCard = () => {
+const ModalCard = (props) => {
   return (
     <div id="modal-card">
       <div className="info">
         <div className="left">
-          <h3>Schnitzel</h3>
+          <h3>{props.data.name}</h3>
           <div className="sm-flex">
-            <div className="helper-color">$15.55</div>
-            <div className="helper-box">x2</div>
+            <div className="helper-color">${props.data.price}</div>
+            <div className="helper-box">x{props.data.amount}</div>
           </div>
         </div>
         <div className="right">

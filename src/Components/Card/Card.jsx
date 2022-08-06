@@ -3,10 +3,11 @@ import { appCtx } from "../context";
 import "./Card.scss";
 
 const Card = (props) => {
-  const { setCartItems } = useContext(appCtx);
-  const { setTotal } = useContext(appCtx);
-  const { setNumberOfItems } = useContext(appCtx);
+  const { setCartItems, cartItems } = useContext(appCtx);
+  const { setTotal, total } = useContext(appCtx);
+  const { setNumberOfItems, numberOfItems } = useContext(appCtx);
   const [amount, setAmount] = useState(0);
+
   const addMeal = () => {
     setAmount((prev) => ++prev);
     setCartItems((prev) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.scss";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
@@ -27,8 +27,6 @@ const App = () => {
   const [numberOfItems, setNumberOfItems] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
-  const [totalMeals, setTotalMeals] = useState(0);
-  console.log(cartItems);
 
   return (
     <div id="app">

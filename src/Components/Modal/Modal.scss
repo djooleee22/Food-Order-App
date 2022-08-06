@@ -41,9 +41,15 @@
         cursor: pointer;
       }
       button.right {
+        // background-color: rgb(223, 59, 59);
+        // color: white;
+        border: none;
+        cursor: auto;
+      }
+      button.right.active {
         background-color: rgb(223, 59, 59);
         color: white;
-        border: none;
+        cursor: pointer;
       }
     }
   }

@@ -6,8 +6,18 @@ import { appCtx } from "../context";
 const Modal = () => {
   const { setModalOpen } = useContext(appCtx);
   const { setModalConf } = useContext(appCtx);
-  const { total } = useContext(appCtx);
-  const { cartItems } = useContext(appCtx);
+  const { total, setTotal } = useContext(appCtx);
+  const { cartItems, setCartItems, setNumberOfItems } = useContext(appCtx);
+
+  const order = () => {
+    if (cartItems.length > 0) {
+      setModalOpen(false);
+      setModalConf(true);
+      setCartItems([]);
+      setTotal(0);
+      setNumberOfItems(0);
+    }
+  };
 
   return (
     <div id="modal">
@@ -16,17 +26,14 @@ const Modal = () => {
           <ModalCard data={el} />
         ))}
         <div className="total">
-          <h3>Total Amount</h3>
-          <div className="amount">${total.toPrecision(4)}</div>
+          <h3>Total Price</h3>
+          <div className="amount">${total.toFixed(2)}</div>
         </div>
         <div className="btns">
           <button onClick={() => setModalOpen(false)}>Close</button>
           <button
-            className="right"
-            onClick={() => {
-              setModalOpen(false);
-              setModalConf(true);
-            }}
+            className={cartItems.length > 0 ? "right active" : "right"}
+            onClick={order}
           >
             Order
           </button>

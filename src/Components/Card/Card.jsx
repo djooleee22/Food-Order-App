@@ -5,45 +5,58 @@ import "./Card.scss";
 const Card = (props) => {
   const { setCartItems, cartItems } = useContext(appCtx);
   const { setTotal, total } = useContext(appCtx);
-  const { setNumberOfItems, numberOfItems } = useContext(appCtx);
-  const [amount, setAmount] = useState(0);
+  const {
+    setNumberOfItems,
+    numberOfItems,
+    refresh,
+    setRefresh,
+    meals,
+    setMeals,
+  } = useContext(appCtx);
 
   const addMeal = () => {
-    setAmount((prev) => ++prev);
-    setCartItems((prev) => {
-      let id;
-      for (let i = 0; i < prev.length; i++) {
-        if (prev[i].id === props.meal.id) {
-          id = prev[i].id;
-        }
-      }
-      if (id) {
-        return prev.map((el, i) => {
-          if (el.id === id) {
+    let id1;
+    let id2;
+    meals.forEach((el) => {
+      if (el.id === props.meal.id) id1 = el.id;
+    });
+    if (id1) {
+      setMeals((prev) => {
+        return meals.map((el) => {
+          if (el.id === id1) {
             return {
               name: el.name,
+              desc: el.desc,
               price: el.price,
               amount: ++el.amount,
               id: el.id,
             };
-          } else {
-            return el;
-          }
+          } else return el;
         });
-      } else {
-        return [
-          {
-            name: props.meal.name,
-            price: props.meal.price,
-            amount: amount + 1,
-            id: props.meal.id,
-          },
-          ...prev,
-        ];
-      }
+      });
+    }
+    cartItems.forEach((el) => {
+      if (el.id === props.meal.id) id2 = el.id;
     });
-    setTotal((prev) => (prev += props.meal.price));
-    setNumberOfItems((prev) => ++prev);
+    if (id2) {
+      setCartItems((prev) => {
+        return cartItems.map((el) => {
+          if (el.id === id2) {
+            return {
+              name: el.name,
+              desc: el.desc,
+              price: el.price,
+              amount: ++el.amount,
+              id: el.id,
+            };
+          } else return el;
+        });
+      });
+    } else {
+      setCartItems((prev) => {
+        return [props.meal, ...prev];
+      });
+    }
   };
 
   return (
@@ -53,11 +66,11 @@ const Card = (props) => {
         <p>
           <i>{props.meal.desc}</i>
         </p>
-        <div>${props.meal.price.toPrecision(4)}</div>
+        <div>${props.meal.price?.toFixed(2)}</div>
       </div>
       <div className="order-info">
         <span className="margin-right">Amount</span>
-        <span className="amount">{amount}</span>
+        <span className="amount">{props.meal.amount}</span>
         <button onClick={addMeal}>Add</button>
       </div>
     </div>

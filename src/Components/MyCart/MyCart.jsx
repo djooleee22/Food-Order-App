@@ -5,6 +5,8 @@ import "./MyCart.scss";
 const MyCart = (props) => {
   const { setModalOpen } = useContext(appCtx);
   const { numberOfItems } = useContext(appCtx);
+  const { meals } = useContext(appCtx);
+
   return (
     <div id="my-cart" onClick={() => setModalOpen(true)}>
       <svg
@@ -22,7 +24,9 @@ const MyCart = (props) => {
         />
       </svg>
       <div className="my-cart-text">My Cart</div>
-      <span className="number">{numberOfItems}</span>
+      <span className="number">
+        {meals.reduce((acc, el) => (acc += el.amount), 0)}
+      </span>
     </div>
   );
 };

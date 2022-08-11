@@ -3,14 +3,24 @@ import { appCtx } from "../context";
 import "./ModalCard.scss";
 
 const ModalCard = (props) => {
-  const { cartItems, setCartItems, setTotal, setNumberOfItems, setAmount } =
-    useContext(appCtx);
+  const {
+    cartItems,
+    setCartItems,
+    setTotal,
+    setNumberOfItems,
+    setAmount,
+    refresh,
+    setRefresh,
+    meals,
+    setMeals,
+  } = useContext(appCtx);
   const plus = () => {
     setCartItems((prev) => {
       return cartItems.map((el) => {
         if (el.id === props.data.id) {
           return {
             name: el.name,
+            desc: el.desc,
             price: el.price,
             amount: ++el.amount,
             id: el.id,
@@ -18,9 +28,19 @@ const ModalCard = (props) => {
         } else return el;
       });
     });
-    setTotal((prev) => (prev += props.data.price));
-    setNumberOfItems((prev) => ++prev);
-    // setAmount((prev) => ++prev);
+    setMeals((prev) => {
+      return meals.map((el) => {
+        if (el.id === props.data.id) {
+          return {
+            name: el.name,
+            desc: el.desc,
+            price: el.price,
+            amount: ++el.amount,
+            id: el.id,
+          };
+        } else return el;
+      });
+    });
   };
 
   const minus = () => {
@@ -30,6 +50,7 @@ const ModalCard = (props) => {
           if (el.id === props.data.id) {
             return {
               name: el.name,
+              desc: el.desc,
               price: el.price,
               amount: --el.amount,
               id: el.id,
@@ -41,8 +62,19 @@ const ModalCard = (props) => {
         return updatedPrev;
       }
     });
-    setTotal((prev) => (prev -= props.data.price));
-    setNumberOfItems((prev) => --prev);
+    setMeals((prev) => {
+      return meals.map((el) => {
+        if (el.id === props.data.id) {
+          return {
+            name: el.name,
+            desc: el.desc,
+            price: el.price,
+            amount: --el.amount,
+            id: el.id,
+          };
+        } else return el;
+      });
+    });
   };
 
   return (

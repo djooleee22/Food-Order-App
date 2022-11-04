@@ -4,15 +4,7 @@ import "./Card.scss";
 
 const Card = (props) => {
   const { setCartItems, cartItems } = useContext(appCtx);
-  const { setTotal, total } = useContext(appCtx);
-  const {
-    setNumberOfItems,
-    numberOfItems,
-    refresh,
-    setRefresh,
-    meals,
-    setMeals,
-  } = useContext(appCtx);
+  const { meals, setMeals } = useContext(appCtx);
 
   const addMeal = () => {
     let id1;

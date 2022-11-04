@@ -2,21 +2,12 @@ import React, { useContext } from "react";
 import "./Modal.scss";
 import ModalCard from "../ModalCard/ModalCard";
 import { appCtx } from "../context";
-import { mealsData } from "../../App";
 
 const Modal = () => {
   const { setModalOpen } = useContext(appCtx);
   const { setModalConf } = useContext(appCtx);
-  const { total, setTotal } = useContext(appCtx);
-  const {
-    cartItems,
-    setCartItems,
-    setNumberOfItems,
-    meals,
-    restart,
-    setRestart,
-    setMeals,
-  } = useContext(appCtx);
+
+  const { cartItems, setCartItems, meals, setMeals } = useContext(appCtx);
 
   const order = () => {
     if (cartItems.length > 0) {

@@ -57,8 +57,6 @@ const App = () => {
 
   useEffect(() => setMeals(mealsData), []);
 
-  console.log(meals);
-
   return (
     <div id="app">
       <Provider

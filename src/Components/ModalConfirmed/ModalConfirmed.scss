@@ -32,4 +32,26 @@
       cursor: pointer;
     }
   }
+  @media screen and (max-width: 1150px) {
+    .modal-confirmed {
+      width: 65%;
+    }
+  }
+  @media screen and (max-width: 920px) {
+    .modal-confirmed {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .modal-confirmed {
+      width: 80%;
+      font-size: 16px;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .modal-confirmed {
+      padding: 20px;
+    }
+  }
 }
